@@ -1,0 +1,10 @@
+package Control.Lens
+
+modules = Control.Lens.Types
+        , Control.Lens.Const
+        , Control.Lens.First
+        , Control.Lens.Getter
+        , Control.Lens.Setter
+        , Control.Lens.Prism
+        , Control.Lens.Tuple
+        , Control.Lens.Examples

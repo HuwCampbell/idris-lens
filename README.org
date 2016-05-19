@@ -1,0 +1,5 @@
+#+TITLE: Idris Lens
+#+AUTHOR: Huw Campbell
+#+DATE: [2016-05-19 Thu]
+
+Small port of Control.Lens to Idris
