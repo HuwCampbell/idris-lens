@@ -22,10 +22,10 @@ infixr 4 .~
 (.~) : Setter s t a b -> b -> s -> t
 (.~) = set
 
-infixr 4 %~
+infixr 4 &~
 
-(%~) : Setter s t a b -> (a -> b) -> s -> t
-(%~) = over
+(&~) : Setter s t a b -> (a -> b) -> s -> t
+(&~) = over
 
 infixl 1 &
 (&) : a -> (a -> b) -> b
