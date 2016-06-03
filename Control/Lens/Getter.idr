@@ -7,18 +7,19 @@ import Control.Lens.Types
 import Control.Lens.Const
 import Control.Lens.Contravariant
 import Control.Lens.First
+import Data.Profunctor
 
 %default total
 %access public export
 
 view : Getter a s a -> s -> a
-view l = getConst . l MkConst
+view l = getConst . getArrow (l (MkArrow MkConst))
 
 views : Getter a s a -> (a -> r) -> s -> r
-views l f a = f $ getConst (l MkConst a)
+views l f = f . view l
 
 foldMapOf : Getter r s a -> (a -> r) -> s -> r
-foldMapOf l f = getConst . l (MkConst . f)
+foldMapOf l f = getConst . getArrow (l (MkArrow (MkConst . f)))
 
 -- Creates a lens where the Functor instance must be
 -- covariant. Practically this means we can only use
@@ -26,9 +27,7 @@ foldMapOf l f = getConst . l (MkConst . f)
 
 ||| Create a Getter from arbitrary functions `s -> a`.
 to : Contravariant f => (s -> a) -> LensLike' f s a
-to k = dimap' k (contramap k) where
-  dimap' : (a -> b) -> (c -> d) -> (b -> c) -> (a -> d)
-  dimap' ab cd bc = cd . bc . ab
+to k = dimap k (contramap k)
 
 infixl 8 ^.
 (^.) : s -> Getter a s a -> a
