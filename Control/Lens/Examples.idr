@@ -28,35 +28,41 @@ Ex3Proof : Ex3 = ("Hello","World!")
 Ex3Proof = Refl
 
 Ex4 : Either String Int
-Ex4 = over _Right (+1) (Left "hi")
+Ex4 = f (Left "hi")
+  where f : Either String Int -> Either String Int
+        f = over _Right (+1)
 
 Ex4Proof : Ex4 = (Left "hi")
 Ex4Proof = Refl
 
 Ex5 : Either String Int
-Ex5 = over _Right (+1) (Right 4)
+Ex5 = f (Right 4)
+  where f : Either String Int -> Either String Int
+        f = over _Right (+1)
 
 Ex5Proof : Ex5 = (Right 5)
 Ex5Proof = Refl
 
 Ex6 : Either (String, Int) Int
-Ex6 = over (_Left . _2) (+1) (Left ("hi", 2))
+Ex6 = f (Left ("hi", 2))
+  where f : Either (String,Int) Int -> Either (String,Int) Int
+        f = over (_Left . _2) (+1)
 
 Ex6Proof : Ex6 = Left ("hi", 3)
 Ex6Proof = Refl
 
 Ex7 : Additive
-Ex7 = view (_Left . _2) x where
-  x : Either (String, Additive) Int
-  x = Left ("hi", GetAdditive 2)
+Ex7 = f (Left ("hi", GetAdditive 2)) where
+  f : Either (String, Additive) Int -> Additive
+  f = view (_Left . _2)
 
 Ex7Proof : Ex7 = (GetAdditive 2)
 Ex7Proof = Refl
 
 Ex8 : Additive
-Ex8 = view (_Left . _2) x where
-  x : Either (String, Additive) Int
-  x = Right 2
+Ex8 = f (Right 2) where
+  f : Either (String, Additive) Int -> Additive
+  f = view (_Left . _2)
 
 Ex8Proof : Ex8 = (GetAdditive 0)
 Ex8Proof = Refl
@@ -85,5 +91,8 @@ Ex11Proof = Refl
 
 Ex12 : Int
 Ex12 = view (to fst) (1,2)
+
+Ex12Proof : Ex12 = 1
+Ex12Proof = Refl
 
 -- --------------------------------------------------------------------- [ EOF ]
