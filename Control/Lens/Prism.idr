@@ -5,15 +5,14 @@
 module Control.Lens.Prism
 import Control.Lens.Types
 import Control.Monad.Identity
+import Data.Profunctor
 
 %default total
 %access public export
 
 ||| Create a `Prism`
 prism : (b -> t) -> (s -> Either t a) -> Prism s t a b
-prism bt seta = dimap' seta (either pure (map bt)) . map where
-  dimap' : (a -> b) -> (c -> d) -> (b -> c) -> (a -> d)
-  dimap' ab cd bc = cd . bc . ab
+prism bt seta = dimap seta (either pure (map bt)) . right'
 
 prism' : (b -> s) -> (s -> Maybe a) -> Prism s s a b
 prism' bs sma = prism bs (\s => maybe (Left s) Right (sma s))
