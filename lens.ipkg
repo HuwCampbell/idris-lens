@@ -11,3 +11,4 @@ modules = Control.Lens.Types
         , Data.Profunctor
         , Data.Profunctor.Arrow
         , Data.Profunctor.Class
+        , Data.Profunctor.Choice
