@@ -62,4 +62,11 @@ Prism s t a b  = {p : Type -> Type -> Type} -> { f : Type -> Type } ->
 Prism' : Type -> Type -> Type
 Prism' = Simple Prism
 
+Iso : Type -> Type -> Type -> Type -> Type
+Iso s t a b = {p : Type -> Type -> Type} -> {f : Type -> Type} ->
+              (Profunctor p,Functor f) => Optic p f s t a b
+
+Iso' : Type -> Type -> Type
+Iso' = Simple Iso
+
 -- --------------------------------------------------------------------- [ EOF ]
