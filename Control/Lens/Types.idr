@@ -54,12 +54,6 @@ Traversal' = Simple Traversal
 -- type Prism s t a b = forall p f. (Choice p, Applicative f) => p a (f b) -> p s (f t)
 -- The choice of `Choice p` for a valid `Traversal` is the `(->)` implementation. Which is used
 -- when using a prism as a getter or setter.
---
--- Unfortunately in dependently typed languages `(->)` is not a type constructor, and can
--- not have any class instance (aka interface implemenations).
---
--- Here we've fixed the choice as `(->)` making `Traversal` and `Prism` one and the same.
--- This means we lose the ability to "turn them around" and use them as a `Review`.
 
 Prism : Type -> Type -> Type -> Type -> Type
 Prism s t a b  = {p : Type -> Type -> Type} -> { f : Type -> Type } -> 
