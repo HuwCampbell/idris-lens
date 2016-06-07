@@ -8,3 +8,7 @@ modules = Control.Lens.Types
         , Control.Lens.Prism
         , Control.Lens.Tuple
         , Control.Lens.Examples
+        , Data.Profunctor
+        , Data.Profunctor.Arrow
+        , Data.Profunctor.Class
+        , Data.Profunctor.Choice

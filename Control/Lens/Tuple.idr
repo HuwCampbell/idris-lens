@@ -4,6 +4,7 @@
 -- --------------------------------------------------------------------- [ EOH ]
 module Control.Lens.Tuple
 import Control.Lens.Types
+import Data.Profunctor
 
 %default total
 %access public export
@@ -14,12 +15,14 @@ import Control.Lens.Types
 --
 
 _1 : Lens (a,c) (b,c) a b
-_1 f (a,c) = (\b => (b,c)) <$> f a
+_1 = lens (\(a,_) => a)
+          (\(_,c),b => (b,c))
 
 _2 : Lens (c,a) (c,b) a b
-_2 f (c,a) = (\b => (c,b)) <$> f a
+_2 = lens (\(_,a) => a)
+          (\(c,_),b => (c,b))
 
 both : Traversal (a,a) (b,b) a b
-both f (a,b) = (\c,d => (c,d)) <$> f a <*> f b
+both (MkArrow f) = MkArrow (\(a,b) => (\c,d => (c,d)) <$> f a <*> f b)
 
 -- --------------------------------------------------------------------- [ EOF ]
