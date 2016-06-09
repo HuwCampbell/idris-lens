@@ -1,14 +1,17 @@
-package Control.Lens
+package lens
 
 modules = Control.Lens.Types
         , Control.Lens.Const
+        , Control.Lens.Contravariant
         , Control.Lens.First
         , Control.Lens.Getter
         , Control.Lens.Setter
         , Control.Lens.Prism
         , Control.Lens.Tuple
         , Control.Lens.Iso
+        , Control.Lens.Maths
         , Control.Lens.Examples
+        , Control.Lens
         , Data.Profunctor
         , Data.Profunctor.Arrow
         , Data.Profunctor.Class

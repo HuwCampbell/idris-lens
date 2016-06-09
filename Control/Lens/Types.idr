@@ -56,7 +56,7 @@ Traversal' = Simple Traversal
 -- when using a prism as a getter or setter.
 
 Prism : Type -> Type -> Type -> Type -> Type
-Prism s t a b  = {p : Type -> Type -> Type} -> { f : Type -> Type } -> 
+Prism s t a b  = {p : Type -> Type -> Type} -> { f : Type -> Type } ->
                  (Choice p,Applicative f) => Optic p f s t a b
 
 Prism' : Type -> Type -> Type

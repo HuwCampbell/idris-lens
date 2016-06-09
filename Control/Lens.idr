@@ -17,4 +17,6 @@ import public Control.Lens.Iso
 import public Control.Monad.Identity
 import public Data.Profunctor
 
+%access public export
+
 -- --------------------------------------------------------------------- [ EOF ]
