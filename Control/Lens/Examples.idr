@@ -95,4 +95,16 @@ Ex12 = view (to fst) (1,2)
 Ex12Proof : Ex12 = 1
 Ex12Proof = Refl
 
+Ex13 : Either Int String
+Ex13 = the (Either Int String) $ _Left # 4
+
+Ex13Proof : Ex13 = Left 4
+Ex13Proof = Refl
+
+Ex14 : Either Int String
+Ex14 = the (Either Int String) $ 5 ^.re _Left
+
+Ex14Proof : Ex14 = Left 5
+Ex14Proof = Refl
+
 -- --------------------------------------------------------------------- [ EOF ]

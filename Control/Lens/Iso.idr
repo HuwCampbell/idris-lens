@@ -14,7 +14,7 @@ Functor (Exchange a b s) where
 
 Profunctor (Exchange a b) where
   dimap f g (MkExchange sa bt) = MkExchange (sa . f) (g . bt)
-   
+
   lmap f (MkExchange sa bt) = MkExchange (sa . f) bt
 
   rmap g (MkExchange sa bt) = MkExchange sa (g . bt)

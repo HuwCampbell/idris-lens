@@ -12,13 +12,13 @@ import Data.Profunctor
 %default total
 %access public export
 
-view : Getter a s a -> s -> a
+view : Getting a s a -> s -> a
 view l = getConst . getArrow (l (MkArrow MkConst))
 
-views : Getter a s a -> (a -> r) -> s -> r
+views : Getting a s a -> (a -> r) -> s -> r
 views l f = f . view l
 
-foldMapOf : Getter r s a -> (a -> r) -> s -> r
+foldMapOf : Getting r s a -> (a -> r) -> s -> r
 foldMapOf l f = getConst . getArrow (l (MkArrow (MkConst . f)))
 
 -- Creates a lens where the Functor instance must be
@@ -30,11 +30,11 @@ to : Contravariant f => (s -> a) -> LensLike' f s a
 to k = dimap k (contramap k)
 
 infixl 8 ^.
-(^.) : s -> Getter a s a -> a
+(^.) : s -> Getting a s a -> a
 a ^. l = view l a
 
 infixl 8 ^?
-(^?) : s -> Getter (First a) s a -> Maybe a
+(^?) : s -> Getting (First a) s a -> Maybe a
 s ^? l = getFirst (foldMapOf l (MkFirst . Just) s)
 
 -- --------------------------------------------------------------------- [ EOF ]

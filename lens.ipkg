@@ -16,3 +16,5 @@ modules = Control.Lens.Types
         , Data.Profunctor.Arrow
         , Data.Profunctor.Class
         , Data.Profunctor.Choice
+
+opts = "-p bifunctors"

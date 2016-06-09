@@ -10,7 +10,7 @@ interface Profunctor (p : Type -> Type -> Type) where
 
   lmap : (a -> b) -> p b c -> p a c
   lmap f = dimap f id
-  
+
   rmap : (c -> d) -> p b c -> p b d
   rmap f = dimap id f
 

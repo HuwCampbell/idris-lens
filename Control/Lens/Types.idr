@@ -4,9 +4,12 @@
 -- --------------------------------------------------------------------- [ EOH ]
 module Control.Lens.Types
 import Control.Lens.Const
+import Control.Lens.Contravariant
 import Control.Lens.First
 import Control.Monad.Identity
+import Data.Bifunctor
 import Data.Profunctor
+import Data.Tagged
 
 %default total
 %access public export
@@ -36,8 +39,12 @@ Lens' : Type -> Type -> Type
 Lens' = Simple Lens
 
 -- type Getting r s a = (a -> Const r a) -> s -> Const r s
-Getter : Type -> Type -> Type -> Type
-Getter r = LensLike' (Const r)
+Getting : Type -> Type -> Type -> Type
+Getting r = LensLike' (Const r)
+
+-- type Getter s a = forall f. (Contravariant f, Functor f) => (a -> f a) -> s -> f s
+Getter : Type -> Type -> Type
+Getter s a = { f : Type -> Type } -> (Contravariant f, Functor f) => LensLike' f s a
 
 -- type ASetter s t a b = (a -> Identity b) -> s -> Identity t
 Setter : Type -> Type -> Type -> Type -> Type
@@ -68,5 +75,16 @@ Iso s t a b = {p : Type -> Type -> Type} -> {f : Type -> Type} ->
 
 Iso' : Type -> Type -> Type
 Iso' = Simple Iso
+
+-- type Review t b = forall p f. (Choice p, Bifunctor p, Settable f) => Optic' p f t b
+Review : Type -> Type -> Type -> Type -> Type
+Review s t a b = { p : Type -> Type -> Type } -> { f : Type -> Type } ->
+                 (Choice p, Bifunctor p) => Optic p Identity s t a b
+
+-- type AReview t b = Optic' Tagged Identity t b
+AReview : Type -> Type -> Type
+AReview t b = Optic' Tagged Identity t b
+
+
 
 -- --------------------------------------------------------------------- [ EOF ]
