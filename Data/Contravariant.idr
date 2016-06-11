@@ -2,7 +2,7 @@
 -- Description : Idris port of Control.Lens
 -- Copyright   : (c) Huw Campbell
 -- --------------------------------------------------------------------- [ EOH ]
-module Control.Lens.Contravariant
+module Data.Contravariant
 
 %access public export
 
