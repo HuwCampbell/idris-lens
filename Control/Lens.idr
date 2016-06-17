@@ -4,6 +4,7 @@
 -- --------------------------------------------------------------------- [ EOH ]
 module Control.Lens
 
+import public Control.Lens.At
 import public Control.Lens.Types
 import public Control.Lens.Const
 import public Control.Lens.First
