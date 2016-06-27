@@ -13,23 +13,31 @@ import Prelude.List
 %default total
 %access public export
 
-interface Ixed ( m : Type ) ind val  where
-  ix : ind -> { f : Type -> Type } -> Applicative f => LensLike' f m val
+interface Ixed ( m : Type ) where
+  IxInd : Type
+  IxVal : Type
+  ix : IxInd -> { f : Type -> Type } -> Applicative f => LensLike' f m IxVal
 
-implementation Ixed (List a) Nat a where
+implementation Ixed (List a) where
+  IxInd = Nat
+  IxVal = a
   ix k (MkArrow f) = MkArrow (\xs0 => go xs0 k)
     where
       go Nil _           = pure Nil
       go (a :: as) Z     = (:: as) <$> (f a)
       go (a :: as) (S n) = (a ::)  <$> (go as n)
 
-implementation Ixed (Maybe a) Unit a where
-  ix () (MkArrow f)  = MkArrow (\g => case g of
+implementation Ixed (Maybe a) where
+  IxInd = Unit
+  IxVal = a
+  ix _ (MkArrow f)  = MkArrow (\g => case g of
     (Just a) => Just <$> f a
     Nothing  => pure Nothing
   )
 
-interface Ixed m ind val => At m ind val where
+interface At m where
+  AtInd : Type
+  AtVal : Type
   -- |
   -- >>> Map.fromList [(1,"world")] ^.at 1
   -- Just "world"
@@ -39,10 +47,11 @@ interface Ixed m ind val => At m ind val where
   --
   -- /Note:/ 'Map'-like containers form a reasonable instance, but not 'Array'-like ones, where
   -- you cannot satisfy the 'Lens' laws.
-  at : ind -> { f : Type -> Type } -> Applicative f => LensLike' f m (Maybe val)
+  at : AtInd -> { f : Type -> Type } -> Applicative f => LensLike' f m (Maybe AtVal)
 
-implementation At (Maybe a) Unit a where
-  at _ (MkArrow f) = (MkArrow f)
-
+implementation At (Maybe a) where
+  AtInd = Unit
+  AtVal = a
+  at () (MkArrow f) = (MkArrow f)
 
 -- --------------------------------------------------------------------- [ EOF ]
