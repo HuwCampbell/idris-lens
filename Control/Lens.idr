@@ -16,6 +16,7 @@ import public Control.Lens.Tuple
 import public Control.Lens.Maths
 import public Control.Lens.Market
 import public Control.Lens.Iso
+import public Control.Lens.Lens
 import public Control.Monad.Identity
 import public Data.Bifunctor
 import public Data.Contravariant

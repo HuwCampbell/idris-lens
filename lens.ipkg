@@ -13,7 +13,6 @@ modules = Control.Lens.Types
         , Control.Lens.Examples
         , Control.Lens
         , Data.Profunctor
-        , Data.Profunctor.Arrow
         , Data.Profunctor.Class
         , Data.Profunctor.Choice
 

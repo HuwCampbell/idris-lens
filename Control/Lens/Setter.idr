@@ -11,10 +11,10 @@ import Data.Profunctor
 %access public export
 
 sets : ((a -> b) -> s -> t) -> Setter s t a b
-sets l (MkArrow f) = MkArrow $ Id . l (runIdentity . f)
+sets l (Mor f) = Mor $ Id . l (runIdentity . f)
 
 over : Setter s t a b -> (a -> b) -> s -> t
-over l f = runIdentity . getArrow (l (MkArrow (Id . f)))
+over l f = runIdentity . applyMor (l (Mor (Id . f)))
 
 set : Setter s t a b -> b -> s -> t
 set l b = over l (const b)

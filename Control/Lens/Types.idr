@@ -24,7 +24,7 @@ Optic' : (Type -> Type -> Type) -> (Type -> Type) -> Type -> Type -> Type
 Optic' p f = Simple (Optic p f)
 
 LensLike : (Type -> Type) -> Type -> Type -> Type -> Type -> Type
-LensLike = Optic Arrow
+LensLike = Optic Morphism
 
 LensLike' : (Type -> Type) -> Type -> Type -> Type
 LensLike' f = Simple (LensLike f)
