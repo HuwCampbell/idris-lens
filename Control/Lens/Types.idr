@@ -4,7 +4,7 @@
 -- --------------------------------------------------------------------- [ EOH ]
 module Control.Lens.Types
 import Control.Lens.Const
-import Control.Lens.Contravariant
+import Data.Contravariant
 import Control.Lens.First
 import Control.Monad.Identity
 import Data.Bifunctor

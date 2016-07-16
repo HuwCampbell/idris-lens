@@ -5,7 +5,7 @@
 module Control.Lens.Getter
 import Control.Lens.Types
 import Control.Lens.Const
-import Control.Lens.Contravariant
+import Data.Contravariant
 import Control.Lens.First
 import Data.Profunctor
 
