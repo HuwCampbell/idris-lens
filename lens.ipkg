@@ -2,7 +2,7 @@ package lens
 
 modules = Control.Lens.Types
         , Control.Lens.Const
-        , Control.Lens.Contravariant
+        , Data.Contravariant
         , Control.Lens.First
         , Control.Lens.Getter
         , Control.Lens.Setter
@@ -13,7 +13,6 @@ modules = Control.Lens.Types
         , Control.Lens.Examples
         , Control.Lens
         , Data.Profunctor
-        , Data.Profunctor.Arrow
         , Data.Profunctor.Class
         , Data.Profunctor.Choice
 

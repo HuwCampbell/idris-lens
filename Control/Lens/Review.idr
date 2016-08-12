@@ -1,5 +1,5 @@
 module Control.Lens.Review
-import Control.Lens.Contravariant
+import Data.Contravariant
 import Control.Lens.Types
 import Control.Lens.Getter
 import Control.Monad.Identity

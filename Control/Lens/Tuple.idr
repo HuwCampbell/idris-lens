@@ -4,6 +4,7 @@
 -- --------------------------------------------------------------------- [ EOH ]
 module Control.Lens.Tuple
 import Control.Lens.Types
+import Control.Lens.Lens
 import Data.Profunctor
 
 %default total
@@ -23,6 +24,6 @@ _2 = lens (\(_,a) => a)
           (\(c,_),b => (c,b))
 
 both : Traversal (a,a) (b,b) a b
-both (MkArrow f) = MkArrow (\(a,b) => (\c,d => (c,d)) <$> f a <*> f b)
+both (Mor f) = Mor (\(a,b) => (\c,d => (c,d)) <$> f a <*> f b)
 
 -- --------------------------------------------------------------------- [ EOF ]

@@ -1,6 +1,6 @@
 module Data.Profunctor.Class
 
-import Data.Profunctor.Arrow
+import Data.Morphisms
 
 %access public export
 
@@ -14,9 +14,9 @@ interface Profunctor (p : Type -> Type -> Type) where
   rmap : (c -> d) -> p b c -> p b d
   rmap f = dimap id f
 
-Profunctor Arrow where
-  dimap f g (MkArrow h) = MkArrow (g . h . f)
+Profunctor Morphism where
+  dimap f g (Mor h) = Mor (g . h . f)
 
-  lmap f (MkArrow h) = MkArrow (h . f)
+  lmap f (Mor h) = Mor (h . f)
 
-  rmap g (MkArrow h) = MkArrow (g . h)
+  rmap g (Mor h) = Mor (g . h)

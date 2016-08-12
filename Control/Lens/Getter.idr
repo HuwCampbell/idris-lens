@@ -5,7 +5,7 @@
 module Control.Lens.Getter
 import Control.Lens.Types
 import Control.Lens.Const
-import Control.Lens.Contravariant
+import Data.Contravariant
 import Control.Lens.First
 import Data.Profunctor
 
@@ -13,13 +13,13 @@ import Data.Profunctor
 %access public export
 
 view : Getting a s a -> s -> a
-view l = getConst . getArrow (l (MkArrow MkConst))
+view l = getConst . applyMor (l (Mor MkConst))
 
 views : Getting a s a -> (a -> r) -> s -> r
 views l f = f . view l
 
 foldMapOf : Getting r s a -> (a -> r) -> s -> r
-foldMapOf l f = getConst . getArrow (l (MkArrow (MkConst . f)))
+foldMapOf l f = getConst . applyMor (l (Mor (MkConst . f)))
 
 -- Creates a lens where the Functor instance must be
 -- covariant. Practically this means we can only use

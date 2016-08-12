@@ -21,7 +21,7 @@ interface Ixed ( m : Type ) where
 implementation Ixed (List a) where
   IxInd = Nat
   IxVal = a
-  ix k (MkArrow f) = MkArrow (\xs0 => go xs0 k)
+  ix k (Mor f) = Mor (\xs0 => go xs0 k)
     where
       go Nil _           = pure Nil
       go (a :: as) Z     = (:: as) <$> (f a)
@@ -30,7 +30,7 @@ implementation Ixed (List a) where
 implementation Ixed (Maybe a) where
   IxInd = Unit
   IxVal = a
-  ix _ (MkArrow f)  = MkArrow (\g => case g of
+  ix _ (Mor f)  = Mor (\g => case g of
     (Just a) => Just <$> f a
     Nothing  => pure Nothing
   )
@@ -52,6 +52,6 @@ interface At m where
 implementation At (Maybe a) where
   AtInd = Unit
   AtVal = a
-  at () (MkArrow f) = (MkArrow f)
+  at () (Mor f) = (Mor f)
 
 -- --------------------------------------------------------------------- [ EOF ]

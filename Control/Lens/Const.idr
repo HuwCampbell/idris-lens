@@ -3,7 +3,7 @@
 -- Copyright   : (c) Huw Campbell
 -- --------------------------------------------------------------------- [ EOH ]
 module Control.Lens.Const
-import Control.Lens.Contravariant
+import Data.Contravariant
 
 %access public export
 
