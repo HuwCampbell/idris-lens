@@ -1,19 +1,23 @@
 package lens
 
-modules = Control.Lens.Types
+modules = Control.Lens
+        , Control.Lens.At
         , Control.Lens.Const
-        , Data.Contravariant
+        , Control.Lens.Examples
         , Control.Lens.First
         , Control.Lens.Getter
-        , Control.Lens.Setter
-        , Control.Lens.Prism
-        , Control.Lens.Tuple
         , Control.Lens.Iso
+        , Control.Lens.Market
         , Control.Lens.Maths
-        , Control.Lens.Examples
-        , Control.Lens
+        , Control.Lens.Prism
+        , Control.Lens.Review
+        , Control.Lens.Setter
+        , Control.Lens.Tuple
+        , Control.Lens.Types
+        , Data.Contravariant
         , Data.Profunctor
-        , Data.Profunctor.Class
         , Data.Profunctor.Choice
+        , Data.Profunctor.Class
+        , Data.Tagged
 
 opts = "-p bifunctors"
