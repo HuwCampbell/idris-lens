@@ -20,4 +20,4 @@ modules = Control.Lens
         , Data.Profunctor.Class
         , Data.Tagged
 
-opts = "-p bifunctors"
+pkgs = Data.Bifunctors
