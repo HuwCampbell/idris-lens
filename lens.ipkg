@@ -7,6 +7,7 @@ modules = Control.Lens
         , Control.Lens.First
         , Control.Lens.Getter
         , Control.Lens.Iso
+        , Control.Lens.Lens
         , Control.Lens.Market
         , Control.Lens.Maths
         , Control.Lens.Prism
