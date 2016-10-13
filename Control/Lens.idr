@@ -19,9 +19,12 @@ import public Control.Lens.Iso
 import public Control.Lens.Lens
 import public Control.Monad.Identity
 import public Data.Bifunctor
+import public Data.Bitraversable
 import public Data.Contravariant
+import public Data.Curried
 import public Data.Profunctor
 import public Data.Tagged
+import public Data.Yoneda
 
 %access public export
 

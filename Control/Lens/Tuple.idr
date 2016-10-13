@@ -7,6 +7,8 @@ import Control.Lens.Types
 import Control.Lens.Lens
 import Data.Profunctor
 
+import Data.Bitraversable
+
 %default total
 %access public export
 
@@ -23,7 +25,7 @@ _2 : Lens (c,a) (c,b) a b
 _2 = lens (\(_,a) => a)
           (\(c,_),b => (c,b))
 
-both : Traversal (a,a) (b,b) a b
-both (Mor f) = Mor (\(a,b) => (\c,d => (c,d)) <$> f a <*> f b)
+both : Bitraversable r => Traversal (r a a) (r b b) a b
+both (Mor f) = Mor (bitraverse f f)
 
 -- --------------------------------------------------------------------- [ EOF ]

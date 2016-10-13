@@ -107,4 +107,13 @@ Ex14 = the (Either Int String) $ 5 ^.re _Left
 Ex14Proof : Ex14 = Left 5
 Ex14Proof = Refl
 
+sansExample : Maybe Int
+sansExample = sans () (Just 4)
+
+fusingExample : Maybe (Int, Int)
+fusingExample = Just (2,3) & over ( fusing (_Just . both)) (+1)
+
+confusingExample : Maybe (Int, Int)
+confusingExample = Just (2,3) & over ( confusing (_Just . both)) (+1)
+
 -- --------------------------------------------------------------------- [ EOF ]

@@ -53,7 +53,6 @@ Setter = LensLike Identity
 Setter' : Type -> Type -> Type
 Setter' = Simple Setter
 
-
 -- type Traversal s t a b = forall f. Applicative f => (a -> f b) -> s -> f t
 Traversal : Type -> Type -> Type -> Type -> Type
 Traversal s t a b  = { f : Type -> Type } -> Applicative f => LensLike f s t a b
