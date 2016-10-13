@@ -30,7 +30,7 @@ implementation Ixed (List a) where
 implementation Ixed (Maybe a) where
   IxInd = Unit
   IxVal = a
-  ix _ (Mor f)  = Mor (\g => case g of
+  ix _ (Mor f) = Mor (\g => case g of
     (Just a) => Just <$> f a
     Nothing  => pure Nothing
   )
@@ -48,6 +48,9 @@ interface At m where
   -- /Note:/ 'Map'-like containers form a reasonable instance, but not 'Array'-like ones, where
   -- you cannot satisfy the 'Lens' laws.
   at : AtInd -> { f : Type -> Type } -> Applicative f => LensLike' f m (Maybe AtVal)
+
+sans : At m => AtInd { m } -> m -> m
+sans k m = m & at k .~ Nothing
 
 implementation At (Maybe a) where
   AtInd = Unit
