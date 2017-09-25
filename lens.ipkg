@@ -16,9 +16,11 @@ modules = Control.Lens
         , Control.Lens.Tuple
         , Control.Lens.Types
         , Data.Contravariant
+        , Data.Curried
         , Data.Profunctor
         , Data.Profunctor.Choice
         , Data.Profunctor.Class
         , Data.Tagged
+        , Data.Yoneda
 
 pkgs = bifunctors
